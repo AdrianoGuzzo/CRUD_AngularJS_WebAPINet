@@ -1,0 +1,38 @@
+﻿<form ng-submit="submit(contact)" name="form">
+    <div class="row">
+        <div class="form-group col-6">
+            <label for="name">Name <span style="color:red">(*)</span></label>
+            <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="name" ng-model="contact.Name" required>
+            <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+        </div>
+        <div class="form-group col-6">
+
+            <label for="email">E-mail <span style="color:red">(*)</span></label>
+            <input type="email" class="form-control" id="email" ng-model="contact.Email" placeholder="E-mail" required>
+
+        </div>
+        <div class="form-group col-6">
+            <label for="date">Birthday <span style="color:red">(*)</span></label>
+            <input type="date" class="form-control" id="date" name="input" ng-model="contact.Birthday" placeholder="dd/MM/yyyy" required />
+        </div>
+        <div class="form-group col-6">
+            <div class="row">
+                <div class="col-10">
+                    <label for="phone">Phone</label>
+                    <input type="text" class="form-control" id="phone" ui-mask="(99)9?9999-9999" model-view-value="true" ng-model="Phone">
+                </div>
+                <div class="col-2">
+                    <button style="margin-top: 32px;" type="button" class="btn btn-primary" model-view-value="true" ng-click="addPhone(Phone)">ADD</button>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-12">
+            <ul class="list-group">
+                <li ng-repeat="phone in contact.Phones" class="list-group-item">{{phone.Number}} <a href="" ng-click="deletePhone(phone)"> Delete</a></li>
+            </ul>
+        </div>
+        <div class="form-group col-12">
+            <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">Save</button>
+        </div>
+    </div>
+</form>

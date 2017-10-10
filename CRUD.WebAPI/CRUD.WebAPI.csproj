@@ -256,6 +256,7 @@
     <Content Include="Scripts\angular-cookies.js" />
     <Content Include="Scripts\angular-cookies.min.js" />
     <Content Include="Scripts\angular-csp.css" />
+    <Content Include="Scripts\angular-input-date.js" />
     <Content Include="Scripts\angular-loader.js" />
     <Content Include="Scripts\angular-loader.min.js" />
     <Content Include="Scripts\angular-message-format.js" />
@@ -284,6 +285,7 @@
     <Content Include="Scripts\Controllers\addController.js" />
     <Content Include="Scripts\Controllers\app.js" />
     <Content Include="Scripts\Controllers\configRoute.js" />
+    <Content Include="Scripts\Controllers\editController.js" />
     <Content Include="Scripts\Controllers\listController.js" />
     <Content Include="Scripts\mask.min.js" />
     <Content Include="Scripts\errors.json" />
@@ -1048,7 +1050,10 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\Service\ServiceBase.js" />
     <Content Include="View\Add.html" />
+    <Content Include="View\Edit.html" />
+    <Content Include="View\Form.html" />
     <Content Include="View\List.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

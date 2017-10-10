@@ -1,32 +1,34 @@
-﻿app.controller('addCtrl', function ($scope, $http, $location) {
+﻿app.controller('addCtrl', function ($scope, $http, $location, base) {
     $scope.list = [];
-    $scope.contact = { phones: [] };
-    $scope.phone = "";
+    $scope.contact = { Phones: [] };
+    $scope.Phone = "";
+
     $scope.submit = function (contact) {
-        contact.birthday = new Date(contact._birthday.split('/')[2], contact._birthday.split('/')[1] - 1, contact._birthday.split('/')[0]);
+        debugger;
+        //contact.birthday = base.convertDate(contact._birthday);
         $http.post('/api/contact/save', contact).then(function (result) {
-            if (result.data.Status)
-                $location.path('/');
-            else {
-                alert("Error!!! Olhe o console")
-                for (var i in result.data.erros) {
-                    console.log(result.data.erros[i].message)
-                    console.log(result.data.erros[i].stackTrace)
-                }
-            }
+            base.returnRequest(result, function (Status, Data) {
+                if (Status)
+                    $location.path('/');
+            });
         });
+    }
+
+    $scope.deletePhone = function (phone) {
+        var index = $scope.contact.Phones.indexOf(phone);
+        $scope.contact.Phones.splice(index, 1);
     }
 
     $scope.addPhone = function (phone) {
         if (phone) {
-            for (i in $scope.contact.phones)
-                if ($scope.contact.phones[i].number == phone) {
-                    $scope.phone = "";
+            for (i in $scope.contact.Phones)
+                if ($scope.contact.Phones[i].number == phone) {
+                    $scope.Phone = "";
                     return;
                 }
-            $scope.contact.phones.push({ number: phone });
+            $scope.contact.Phones.push({ Number: phone });
         }
-        $scope.phone = "";
+        $scope.Phone = "";
     }
 
 });

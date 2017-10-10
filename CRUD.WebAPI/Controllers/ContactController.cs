@@ -1,5 +1,5 @@
 ﻿using CRUD.Model.Model;
-using CRUD.Service;
+using CRUD.Service.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ namespace CRUD.WebAPI.Controllers
 {
     public class ContactController : ApiControllerBase
     {
-        IContactService ContactService;
+        private readonly IContactService ContactService;
         public ContactController(IContactService _ContactService)
         {
             ContactService = _ContactService;
@@ -72,5 +72,46 @@ namespace CRUD.WebAPI.Controllers
                 return new { Status = false, erros = returnError(ex) };
             }
         }
+
+        [HttpGet]
+        [Route("api/contact/get/{Id}")]
+        public object GetContact(Guid Id)
+        {
+            try
+            {
+                return new { Status = true, Data = ContactService.GetContactById(Id) };
+            }
+            catch (Exception ex)
+            {
+                return new { Status = false, erros = returnError(ex) };
+            }
+        }
+        [HttpPut]
+        [Route("api/contact/update")]
+        public object UpdateContact(Contact model)
+        {
+            try
+            {
+                return new { Status = true, Data = ContactService.UpdateContact(model) };
+            }
+            catch (Exception ex)
+            {
+                return new { Status = false, erros = returnError(ex) };
+            }
+        }
+        [HttpDelete]
+        [Route("api/contact/deletePhone/{Id}")]
+        public object DeletePhone(Guid Id)
+        {
+            try
+            {
+                return new { Status = true, Data = ContactService.DeletePhone(Id) };
+            }
+            catch (Exception ex)
+            {
+                return new { Status = false, erros = returnError(ex) };
+            }
+        }
+
     }
 }

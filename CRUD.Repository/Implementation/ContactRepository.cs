@@ -1,4 +1,5 @@
 ﻿using CRUD.Model.Model;
+using CRUD.Repository.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,18 @@ namespace CRUD.Repository
 {
     public class ContactRepository : RepositoryBase<Contact>, IContactRepository
     {
-        public void AddContact(Contact model)
+        public bool AddContact(Contact model)
         {
             Add(model);
             SaveChange();
+            return true;
+        }
+        public bool UpdateContact(Contact model)
+        {
+        
+            AddOrUpdate(model);
+            SaveChange();
+            return true;
         }
         public IEnumerable<Contact> ReadALL()
         {
@@ -21,6 +30,11 @@ namespace CRUD.Repository
         public bool DeleteContact(Guid Id)
         {
             return DeleteById(Id);
+        }
+
+        public Contact GetContactById(Guid Id)
+        {
+            return Find(Id, x => x.Phones);
         }
 
     }

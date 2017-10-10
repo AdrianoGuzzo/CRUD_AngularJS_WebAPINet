@@ -16,6 +16,6 @@ namespace CRUD.Model.Model
         [Required]
         public DateTime Birthday { get; set; }
 
-        public ICollection<Phone> Phones { get; set; }
+        public virtual ICollection<Phone> Phones { get; set; }
     }
 }

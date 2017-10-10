@@ -5,13 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CRUD.Service
+namespace CRUD.Service.Interface
 {
     public interface IContactService
     {
         bool AddContact(Contact model);
-        List<object> ReadALL();
+        bool UpdateContact(Contact model);
         bool DeleteContact(Guid Id);
+        List<object> ReadALL();       
         List<object> ReadPhonesByContact(Guid Id);
+        bool DeletePhone(Guid Id);
+        object GetContactById(Guid Id);
+        
     }
 }

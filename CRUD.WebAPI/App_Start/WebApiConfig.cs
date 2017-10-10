@@ -4,6 +4,7 @@ using System.Web.Http.Cors;
 using Microsoft.Practices.Unity;
 using CRUD.WebAPI.App_Start;
 using CRUD.Service;
+using CRUD.Service.Interface;
 
 namespace CRUD.WebAPI
 {

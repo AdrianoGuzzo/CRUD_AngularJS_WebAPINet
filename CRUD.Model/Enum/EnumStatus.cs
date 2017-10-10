@@ -1,6 +1,9 @@
-﻿public enum EnumStatus
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+
+public enum EnumStatus
 {
-    Deleted,
-    Active
+    Deleted = 0,
+    Active = 1
 };
 

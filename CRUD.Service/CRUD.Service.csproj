@@ -40,10 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ContactService.cs" />
-    <Compile Include="IContactService.cs" />
+    <Compile Include="Implementation\ContactService.cs" />
+    <Compile Include="Interface\IContactService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServiceBase.cs" />
+    <Compile Include="Implementation\ServiceBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CRUD.Model\CRUD.Model.csproj">

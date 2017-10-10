@@ -5,5 +5,7 @@
         })
         .when("/add", {
             templateUrl: "View/Add.html"
+        }).when("/edit/:Id", {
+            templateUrl: "View/Edit.html"
         });
 });

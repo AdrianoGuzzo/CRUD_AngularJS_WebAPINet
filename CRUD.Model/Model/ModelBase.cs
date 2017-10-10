@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -13,6 +15,7 @@ namespace CRUD.Model.Model
         public Guid Id { get; set; }
         public DateTime? DateCreate { get; set; }
         public DateTime? DateAlter { get; set; }
+
         public EnumStatus Status { get; set; }
     }
 }

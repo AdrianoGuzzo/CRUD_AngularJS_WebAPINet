@@ -15,6 +15,6 @@ namespace CRUD.Model.Model
         public Guid IdContact {get;set;}
 
         [ForeignKey("IdContact")]
-        public Contact Contact { get; set; }
+        public virtual Contact Contact { get; set; }
     }
 }

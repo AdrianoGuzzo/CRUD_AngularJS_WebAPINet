@@ -1,0 +1,12 @@
+﻿<div ng-controller="editCtrl">
+    <h1>Edit</h1>
+    <div class="card" ng-show="contact!=null">
+        <div class="container">
+            <div class="slide-animate" ng-include="'View/Form.html'"></div>     
+        </div>
+    </div>
+    <div ng-show="contact==null">
+        <img style="display: block; margin: 0 auto;" src="../Content/Image/Llgbv_s-200x150.gif" />
+    </div>
+</div>
+

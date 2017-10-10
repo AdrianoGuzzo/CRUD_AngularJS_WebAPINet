@@ -8,12 +8,15 @@ using CRUD.Repository;
 using CRUD.Model.Model;
 using System.Linq.Expressions;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
+
+
 
 namespace CRUD.Repository
 {
     public abstract class RepositoryBase<TModel> where TModel : ModelBase
     {
-        public DBContext.DBContext context = new DBContext.DBContext();
+        protected DBContext.DBContext context = new DBContext.DBContext();
 
         protected bool Add(TModel model)
         {
@@ -23,6 +26,12 @@ namespace CRUD.Repository
             context.Set<TModel>().Add(model);
             return true;
         }
+        protected bool AddOrUpdate(TModel model)
+        {
+            model.DateAlter = DateTime.Now;
+            context.Set<TModel>().AddOrUpdate(model);
+            return true;
+        }
 
         protected bool SaveChange()
         {
@@ -30,7 +39,7 @@ namespace CRUD.Repository
             return true;
         }
 
-        protected IQueryable<TModel> Read(Expression<Func<TModel, bool>> where = null, bool isNoTracking = false)
+        protected IQueryable<TModel> Read(Expression<Func<TModel, bool>> where = null, bool isNoTracking = false, params Expression<Func<TModel, object>>[] includes)
         {
             IQueryable<TModel> query;
             if (isNoTracking)
@@ -38,15 +47,30 @@ namespace CRUD.Repository
             else
                 query = context.Set<TModel>().AsQueryable();
 
+            foreach (Expression<Func<TModel, object>> item in includes)
+            {
+                query = query.Include(item);
+            }
+
             if (where != null)
                 query = query.Where(where);
 
             return query;
         }
+        protected TModel Find(Guid Id, params Expression<Func<TModel, object>>[] includes)
+        {
+            IQueryable<TModel> query = context.Set<TModel>().AsQueryable();
+            foreach (Expression<Func<TModel, object>> item in includes)
+            {
+                query = query.Include(item);
+            }
+
+            return query.SingleOrDefault(x => x.Id == Id);
+        }
         protected bool DeleteById(Guid Id)
         {
             TModel model = context.Set<TModel>().SingleOrDefault(x => x.Id == Id);
-            model.Status = EnumStatus.Deleted;
+            model.Status = (byte)EnumStatus.Deleted;
             context.SaveChanges();
             return true;
         }
